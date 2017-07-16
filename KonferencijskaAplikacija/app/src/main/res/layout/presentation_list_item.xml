@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="hr.fer.tel.ruazosa.projekt.konferencijskaaplikacija.PresentationList"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/presentation_list_date"
+        style="@style/DateView"
+        tools:text="30.6.2017"/>
+
+    <TextView
+        android:id="@+id/presentation_list_title"
+        style="@style/TitleView"
+        android:textStyle="bold"
+        android:layout_below="@id/presentation_list_date"
+        tools:text="Naziv predavanja"/>
+
+</RelativeLayout>

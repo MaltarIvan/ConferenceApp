@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".ConferenceListActivity">
+    
+    <TextView
+        android:id="@+id/conference_list_date"
+        style="@style/DateView"
+        tools:text="10. srpnja 2017, 12:00"/>
+
+    <TextView
+        android:id="@+id/conference_list_conference_name"
+        style="@style/TitleView"
+        android:layout_below="@id/conference_list_date"
+        tools:text="Ime konferencije"/>
+
+    <TextView
+        android:id="@+id/conference_list_location"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_below="@id/conference_list_conference_name"
+        android:textSize="20sp"
+        tools:text="lokacija konferencije"/>
+
+</RelativeLayout>

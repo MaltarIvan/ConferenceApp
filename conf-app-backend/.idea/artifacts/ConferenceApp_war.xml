@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="ConferenceApp:war">
+    <output-path>$PROJECT_DIR$/target</output-path>
+    <root id="archive" name="ConferenceApp.war">
+      <element id="artifact" artifact-name="ConferenceApp:war exploded" />
+    </root>
+  </artifact>
+</component>

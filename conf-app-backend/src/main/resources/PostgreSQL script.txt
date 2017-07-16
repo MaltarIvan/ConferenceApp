@@ -1,0 +1,74 @@
+CREATE TABLE konferencija (
+	konferencija_id SERIAL CONSTRAINT pkKonferencija PRIMARY KEY,
+    datumPocetka date NOT NULL,
+	datumZavrsetka date NOT NULL,
+	lokacija VARCHAR NOT NULL,
+    naziv VARCHAR(100) NOT NULL,
+	osnovneInfo TEXT DEFAULT '-',
+	CHECK (datumPocetka <= datumZavrsetka)
+);
+
+CREATE TABLE predavaci (
+	predavac_id SERIAL CONSTRAINT pkPredavaci PRIMARY KEY,
+	imePredavac VARCHAR(50) NOT NULL,
+    prezimePredavac VARCHAR(50) NOT NULL,
+	biografija TEXT DEFAULT '-',
+	titula VARCHAR(50) DEFAULT '-'
+);
+
+CREATE TABLE sponzori (
+	sponzori_id SERIAL CONSTRAINT pkSponzori PRIMARY KEY,
+	logo BYTEA,
+	naziv VARCHAR(100),
+	sluzbena_stranica VARCHAR
+);
+
+CREATE TABLE predavanja(
+    predavanja_id SERIAL CONSTRAINT pkPredavanja PRIMARY KEY,
+    konferencija_id INTEGER,
+	datum_predavanja Date NOT NULL,
+	naziv_predavanja VARCHAR NOT NULL,
+	osnovne_info TEXT DEFAULT '-',
+	vrijeme_predavanja TIME,
+	CONSTRAINT fkKonferencija FOREIGN KEY (konferencija_id) REFERENCES konferencija (konferencija_id)
+        ON DELETE CASCADE
+		ON UPDATE CASCADE
+);
+
+CREATE TABLE predavaci_po_predavanjima(
+	predavac_id INTEGER,
+	predavanja_id INTEGER,
+	CONSTRAINT pkPredavaciPoPredavanjima PRIMARY KEY (predavac_id, predavanja_id),
+	CONSTRAINT fkPredavac FOREIGN KEY (predavac_id) REFERENCES predavaci (predavac_id)
+        ON DELETE CASCADE
+		ON UPDATE CASCADE,
+	CONSTRAINT fkPredavanja FOREIGN KEY (predavanja_id) REFERENCES predavanja (predavanja_id)
+        ON DELETE CASCADE
+		ON UPDATE CASCADE
+);
+
+CREATE TABLE predavaci_po_konferencijama(
+	predavac_id INTEGER,
+	konferencija_id INTEGER,
+	CONSTRAINT predavaciPoKonferencijama PRIMARY KEY (predavac_id, konferencija_id),
+	CONSTRAINT fkPredavac FOREIGN KEY (predavac_id) REFERENCES predavaci (predavac_id)
+        ON DELETE CASCADE
+		ON UPDATE CASCADE,
+	CONSTRAINT fkKonferencija FOREIGN KEY (konferencija_id) REFERENCES konferencija (konferencija_id)
+        ON DELETE CASCADE
+		ON UPDATE CASCADE
+);
+
+CREATE TABLE sponzori_po_konferencijama(
+	sponzori_id INTEGER,
+	konferencija_id INTEGER,
+	CONSTRAINT sponzoriPoKonferencijama PRIMARY KEY (sponzori_id, konferencija_id),
+	CONSTRAINT fkSponzori FOREIGN KEY (sponzori_id) REFERENCES sponzori (sponzori_id)
+        ON DELETE CASCADE
+		ON UPDATE CASCADE,
+	CONSTRAINT fkKonferencija FOREIGN KEY (konferencija_id) REFERENCES konferencija (konferencija_id)
+        ON DELETE CASCADE
+		ON UPDATE CASCADE
+);
+
+
